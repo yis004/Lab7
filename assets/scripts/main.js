@@ -87,19 +87,23 @@ async function getRecipes() {
   
   //const myPromise = new Promise();
 
-  function callbackTest(resolve, reject) {
+  async function callbackTest(resolve, reject) {
     for (let i=0;i<RECIPE_URLS.length ;i++){
       try{
-        await fetch(
+        const response = await fetch(
           RECIPE_URLS[i],
           {
             method: 'GET',
           }
-        ).then(response => {
-          recipesFetch.push(await response.json());
-        });
-        saveRecipesToStorage(recipesFetch);
-        resolve(recipesFetch);
+        )
+
+        recipesFetch.push(await response.json());
+
+        if(recipesFetch.length==RECIPE_URLS.length){
+          saveRecipesToStorage(recipesFetch);
+          resolve(recipesFetch);
+        }
+        
       }
       catch{
         console.error(`${err}`);
