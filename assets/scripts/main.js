@@ -70,7 +70,7 @@ async function getRecipes() {
   //            If there are recipes, return them.
   /**************************/
   if (localStorage.getItem('recipes')===null){
-    return [];
+    //return [];
   }else{
     return JSON.parse(localStorage.getItem('recipes'));
   }
