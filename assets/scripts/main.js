@@ -48,7 +48,7 @@ function initializeServiceWorker() {
     
     window.addEventListener('load', function(event) {
       
-      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function(reg) {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
         // registration worked
         console.log('Registration succeeded. Scope is ' + reg.scope);
       }).catch(function(error) {
