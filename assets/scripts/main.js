@@ -45,17 +45,20 @@ function initializeServiceWorker() {
   // We first must register our ServiceWorker here before any of the code in
   // sw.js is executed.
   if ('serviceWorker' in navigator) {
-    this.addEventListener('load', function(event) {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' });
-    }).then(function(reg) {
-      // registration worked
-      console.log('Registration succeeded. Scope is ' + reg.scope);
-    }).catch(function(error) {
-      // registration failed
-      console.log('Registration failed with ' + error);
-    });
+    
+    window.addEventListener('load', function(event) {
+      
+      navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(function(reg) {
+        // registration worked
+        console.log('Registration succeeded. Scope is ' + reg.scope);
+      }).catch(function(error) {
+        // registration failesd
+        console.log('Registration failed with ' + error);
+      });
+    })
     
   }
+  
   
 
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
